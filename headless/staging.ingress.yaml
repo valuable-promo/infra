@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: headless-ingress
+  namespace: valuable-promo-staging
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer
+    nginx.ingress.kubernetes.io/whitelist-source-range: '144.21.59.206/32,2603:c020:c001:bb48:a79b:1d9d:22f9:c85a/128'
+spec:
+  tls:
+    - hosts:
+        - headless-staging.valuable.promo
+      secretName: headless-tls
+  rules:
+    - host: headless-staging.valuable.promo
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: headless-srv
+                port:
+                  number: 1337
