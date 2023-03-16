@@ -16,6 +16,8 @@ on:
 jobs:
   staging:
     runs-on: self-hosted
+    environment:
+      name: staging
     steps:
       - name: Checkout source code
         uses: actions/checkout@v3
