@@ -1,35 +1,12 @@
 # Headless ENVs
 
-## APP_KEYS
-
-Use `crypto.randomBytes(16).toString('base64')` to generate new keys (4x). Then
+## Secrets
 
 ```bash
-export APP_KEYS="key1,key2,key3,key4"
-```
-
-## API_TOKEN_SALT
-
-Use `crypto.randomBytes(16).toString('base64')` to generate a new key. Then
-
-```bash
-export API_TOKEN_SALT="key"
-```
-
-## ADMIN_JWT_SECRET
-
-Use `crypto.randomBytes(16).toString('base64')` to generate a new key. Then
-
-```bash
-export ADMIN_JWT_SECRET="key"
-```
-
-## JWT_SECRET
-
-Use `crypto.randomBytes(16).toString('base64')` to generate a new key. Then
-
-```bash
-export JWT_SECRET="key"
+export APP_KEYS="$(openssl rand -base64 16),$(openssl rand -base64 16),$(openssl rand -base64 16),$(openssl rand -base64 16)"
+export API_TOKEN_SALT="$(openssl rand -base64 16)"
+export ADMIN_JWT_SECRET="$(openssl rand -base64 16)"
+export JWT_SECRET="$(openssl rand -base64 16)"
 ```
 
 ## DATABASE_PASSWORD
@@ -75,9 +52,9 @@ kubectl create secret generic --dry-run=client \
     --from-literal=SCALEWAY_ACCESS_SECRET=$SCALEWAY_ACCESS_SECRET \
     --from-literal=SMTP_PASSWORD=$SMTP_PASSWORD \
     -o yaml \
-    | kubeseal --format=yaml > $ENV.env.sealed-secret.yaml
+    | kubeseal --format=yaml > $ENV/$ENV.env.sealed-secret.yaml
 ```
 
 ```bash
-kubectl apply -f $ENV.env.sealed-secret.yaml
+kubectl apply -f $ENV/$ENV.env.sealed-secret.yaml
 ```

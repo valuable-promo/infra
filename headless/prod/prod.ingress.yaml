@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: headless-ingress
+  namespace: valuable-promo-prod
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer
+spec:
+  tls:
+    - hosts:
+        - headless.valuable.promo
+      secretName: headless-tls
+  rules:
+    - host: headless.valuable.promo
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: headless-srv
+                port:
+                  number: 1337
