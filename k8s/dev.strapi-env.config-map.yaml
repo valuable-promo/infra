@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: strapi-env
+  namespace: valuable-promo-dev
+data:
+  DATABASE_HOST: "postgres.valuable-promo-dev.svc.cluster.local"
+  DATABASE_NAME: "strapi"
+  DATABASE_USER: "strapi"
+  DATABASE_SSL: "false"
+  HOST: "0.0.0.0"
+  PORT: "1337"
