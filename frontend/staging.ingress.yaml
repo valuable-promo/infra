@@ -10,7 +10,7 @@ spec:
   tls:
     - hosts:
         - staging.valuable.promo
-      secretName: headless-tls
+      secretName: frontend-tls
   rules:
     - host: staging.valuable.promo
       http:
