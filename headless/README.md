@@ -7,6 +7,7 @@ export APP_KEYS="$(openssl rand -base64 16),$(openssl rand -base64 16),$(openssl
 export API_TOKEN_SALT="$(openssl rand -base64 16)"
 export ADMIN_JWT_SECRET="$(openssl rand -base64 16)"
 export JWT_SECRET="$(openssl rand -base64 16)"
+export TRANSFER_TOKEN_SALT="$(openssl rand -base64 16)"
 ```
 
 ## DATABASE_PASSWORD
