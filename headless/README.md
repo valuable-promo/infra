@@ -49,6 +49,7 @@ kubectl create secret generic --dry-run=client \
     --from-literal=API_TOKEN_SALT=$API_TOKEN_SALT \
     --from-literal=ADMIN_JWT_SECRET=$ADMIN_JWT_SECRET \
     --from-literal=JWT_SECRET=$JWT_SECRET \
+    --from-literal=TRANSFER_TOKEN_SALT=$TRANSFER_TOKEN_SALT \
     --from-literal=DATABASE_PASSWORD=$DATABASE_PASSWORD \
     --from-literal=SCALEWAY_ACCESS_SECRET=$SCALEWAY_ACCESS_SECRET \
     --from-literal=SMTP_PASSWORD=$SMTP_PASSWORD \
