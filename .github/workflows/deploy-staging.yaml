@@ -34,4 +34,4 @@ jobs:
 
       - name: Deploy to the Kubernetes cluster
         run: |
-          ${{ steps.install-kubectl.outputs.kubectl-path }} rollout restart deploy ${{ inputs.deployment }} -n ${{ inputs.namespace }}
+          ${{ steps.install-kubectl.outputs.kubectl-path }} rollout restart deploy ${{ inputs.deployment }} -n ${{ inputs.namespace }} --insecure-skip-tls-verify

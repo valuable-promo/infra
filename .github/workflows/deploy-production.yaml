@@ -40,3 +40,4 @@ jobs:
           images: |
             ghcr.io/${{ github.repository }}:${{ github.ref_name }}
           annotate-namespace: false
+          skip-tls-verify: true
