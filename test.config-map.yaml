@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: test-env
-  namespace: valuable-promo-prod
-data:
-  DATA: Valuable Promo
