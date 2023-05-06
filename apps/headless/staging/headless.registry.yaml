@@ -22,27 +22,4 @@ spec:
     numerical:
       order: asc
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
-kind: ImageUpdateAutomation
-metadata:
-  name: valuable-promo-headless
-  namespace: valuable-promo-staging
-spec:
-  interval: 1m0s
-  sourceRef:
-    kind: GitRepository
-    name: valuable-promo
-  git:
-    checkout:
-      ref:
-        branch: main
-    commit:
-      author:
-        email: fluxcdbot@users.noreply.github.com
-        name: fluxcdbot
-      messageTemplate: '{{range .Updated.Images}}{{println .}}{{end}}'
-    push:
-      branch: main
-  update:
-    path: ./apps
-    strategy: Setters
+
