@@ -4,7 +4,7 @@ metadata:
   name: headless-depl
   namespace: valuable-promo-staging
   annotations:
-    reloader.stakater.com/auto: "true"
+    reloader.stakater.com/auto: 'true'
 spec:
   replicas: 1
   selector:
@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: headless
-          image: ghcr.io/valuable-promo/headless:main
+          image: ghcr.io/valuable-promo/headless:main # {"$imagepolicy": "valuable-promo-staging:valuable-promo-headless"}
           imagePullPolicy: Always
           envFrom:
             - secretRef:
