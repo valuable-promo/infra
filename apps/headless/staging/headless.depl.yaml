@@ -5,8 +5,6 @@ metadata:
   namespace: valuable-promo-staging
   annotations:
     reloader.stakater.com/auto: 'true'
-    fluxcd.io/automated: 'true'
-    fluxcd.io/tag.headless: semver:^5.0
 spec:
   replicas: 1
   selector:
@@ -19,7 +17,7 @@ spec:
     spec:
       containers:
         - name: headless
-          image: ghcr.io/valuable-promo/headless:main
+          image: ghcr.io/valuable-promo/headless:main # {"$imagepolicy": "valuable-promo-staging:valuable-promo-headless"}
           imagePullPolicy: Always
           envFrom:
             - secretRef:
