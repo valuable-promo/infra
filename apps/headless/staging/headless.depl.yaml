@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: headless
-          image: ghcr.io/valuable-promo/headless:main-18fef24-1683972474 # {"$imagepolicy": "valuable-promo-staging:valuable-promo-headless"}
+          image: ghcr.io/valuable-promo/headless:main-2149562-1683972987 # {"$imagepolicy": "valuable-promo-staging:valuable-promo-headless"}
           imagePullPolicy: Always
           envFrom:
             - secretRef:
