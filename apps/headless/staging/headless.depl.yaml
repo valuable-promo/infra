@@ -1,29 +1,29 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: headless-depl
-  namespace: valuable-promo-staging
-  annotations:
-    reloader.stakater.com/auto: 'true'
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: headless-depl
-  template:
-    metadata:
-      labels:
-        app: headless-depl
-    spec:
-      containers:
-        - name: headless
-          image: ghcr.io/valuable-promo/headless:main-d254da2-1686677820 # {"$imagepolicy": "valuable-promo-staging:valuable-promo-headless"}
-          imagePullPolicy: Always
-          envFrom:
-            - secretRef:
-                name: headless-env
-            - configMapRef:
-                name: headless-env
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: headless-depl
+#   namespace: valuable-promo-staging
+#   annotations:
+#     reloader.stakater.com/auto: 'true'
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: headless-depl
+#   template:
+#     metadata:
+#       labels:
+#         app: headless-depl
+#     spec:
+#       containers:
+#         - name: headless
+#           image: ghcr.io/valuable-promo/headless:main-d70bf1e-1686246704 # {"$imagepolicy": "valuable-promo-staging:valuable-promo-headless"}
+#           imagePullPolicy: Always
+#           envFrom:
+#             - secretRef:
+#                 name: headless-env
+#             - configMapRef:
+#                 name: headless-env
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
