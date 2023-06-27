@@ -31,7 +31,7 @@ Export the GPG private key:
 gpg --export-secret-keys --armor KEY_ID > git.asc
 ```
 
-Export the GPG public key and copy to git repository:
+Export the GPG public key and copy to github user's GPG keys (powerkernelbot):
 
 ```bash
 gpg --export --armor KEY_ID

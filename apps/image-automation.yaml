@@ -15,8 +15,11 @@ spec:
         branch: main
     commit:
       author:
-        email: infra@powerkernel.com
-        name: fluxcd
+        email: info@valuable.promo
+        name: powerkernelbot
+      signingKey:
+        secretRef:
+          name: fluxcd-signing-key
       messageTemplate: '{{range .Updated.Images}}{{println .}}{{end}}'
     push:
       branch: main
@@ -57,7 +60,7 @@ spec:
     commit:
       author:
         email: info@valuable.promo
-        name: fluxcd
+        name: powerkernelbot
       signingKey:
         secretRef:
           name: fluxcd-signing-key
