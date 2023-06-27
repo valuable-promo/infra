@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: headless
-          image: ghcr.io/valuable-promo/headless:v0.1.13 # {"$imagepolicy": "valuable-promo-prod:valuable-promo-headless"}
+          image: ghcr.io/valuable-promo/headless:v0.1.14 # {"$imagepolicy": "valuable-promo-prod:valuable-promo-headless"}
           envFrom:
             - secretRef:
                 name: headless-env
