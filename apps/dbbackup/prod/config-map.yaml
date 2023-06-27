@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dbbackup-env
+  namespace: valuable-promo-prod
+data:
+  DB_HOST: 'postgresql-pooler.postgresql.svc'
+  DB_PORT: '5432'
+  DB_NAME: 'valuable_promo_prod'
+  DB_USER: 'valuable_promo_prod_sql'
+  AWS_ACCESS_KEY_ID: 'AKIAZSXRTNLW6SXOQ5EU'
+  AWS_DEFAULT_REGION: 'eu-central-1'
+  BUCKET_NAME: 'valuable-promo-db-backups'
