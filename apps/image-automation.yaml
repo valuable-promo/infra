@@ -56,7 +56,7 @@ spec:
         branch: main
     commit:
       author:
-        email: info@valuable.promp
+        email: info@valuable.promo
         name: fluxcd
       signingKey:
         secretRef:
