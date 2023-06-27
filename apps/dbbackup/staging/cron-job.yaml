@@ -1,0 +1,57 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: dbbackup-cronjob
+  namespace: valuable-promo-staging
+spec:
+  schedule: '0 0 * * *'
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          initContainers:
+            - name: dump
+              image: postgres:15-alpine
+              volumeMounts:
+                - name: data
+                  mountPath: /backup
+              args:
+                - pg_dump
+                - '-Fc'
+                - '-f'
+                - '/backup/$(DB_NAME).pgdump'
+                - '-Z'
+                - '9'
+                - '-v'
+                - '-h'
+                - '$(DB_HOST)'
+                - '-U'
+                - '$(DB_USER)'
+                - '-d'
+                - '$(DB_NAME)'
+              envFrom:
+                - configMapRef:
+                    name: dbbackup-env
+                - secretRef:
+                    name: dbbackup-env
+          containers:
+            - name: upload
+              image: amazon/aws-cli
+              volumeMounts:
+                - name: data
+                  mountPath: /backup
+              command: ['/bin/sh']
+              args:
+                - '-c'
+                - >
+                  aws s3 cp /backup/$(DB_NAME).pgdump s3://$(BUCKET_NAME)/$(DB_NAME)_$(date -u +%Y%m%d%H%M%S).pgdump
+              envFrom:
+                - secretRef:
+                    # Must contain AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_DEFAULT_REGION
+                    name: dbbackup-env
+                - configMapRef:
+                    name: dbbackup-env
+          volumes:
+            - name: data
+              emptyDir: {}
