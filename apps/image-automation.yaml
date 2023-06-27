@@ -58,7 +58,7 @@ spec:
       author:
         email: info@valuable.promp
         name: fluxcd
-      singingKey:
+      signingKey:
         secretRef:
           name: fluxcd-signing-key
       messageTemplate: '{{range .Updated.Images}}{{println .}}{{end}}'
