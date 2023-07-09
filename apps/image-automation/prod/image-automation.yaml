@@ -15,8 +15,8 @@ spec:
         branch: main
     commit:
       author:
-        email: it@powerkernel.com
-        name: powerkernelbot
+        email: it@valuable.promo
+        name: mrgitops
       signingKey:
         secretRef:
           name: fluxcd-signing-key

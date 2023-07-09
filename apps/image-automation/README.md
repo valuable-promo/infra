@@ -37,5 +37,5 @@ kubectl create secret generic --dry-run=client \
     --namespace=$NAMESPACE \
     --from-file=git.asc \
     -o yaml \
-    | kubeseal --format=yaml > fluxcd-signing-key.sealed-secret.yaml
+    | kubeseal --format=yaml > sealed-secret.yaml
 ```
