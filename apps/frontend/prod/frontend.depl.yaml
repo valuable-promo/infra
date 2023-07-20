@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: ghcr.io/valuable-promo/frontend:v1.2.0 # {"$imagepolicy": "valuable-promo-prod:valuable-promo-frontend"}
+          image: ghcr.io/valuable-promo/frontend:v1.3.0 # {"$imagepolicy": "valuable-promo-prod:valuable-promo-frontend"}
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
