@@ -1,0 +1,60 @@
+version: '3'
+
+volumes:
+  db_data:
+    driver: local
+
+services:
+  frontend:
+    depends_on:
+      - headless
+    container_name: frontend
+    build:
+      context: ./../frontend
+      args:
+        NEXT_PUBLIC_STRAPI_API_URL: 'http://host.docker.internal:1337'
+        NEXT_PUBLIC_STORAGE_HOST: 'valuable-promo-headless-dev.s3.nl-ams.scw.cloud'
+        NEXT_PUBLIC_CA_PUB: 'ca-pub-3656451135676029'
+        NEXT_PUBLIC_SITE_URL: 'http://localhost:3000'
+        NEXT_PUBLIC_SITE_NAME: 'Valueble Promo'
+        REVALIDATE_TOKEN: ed75c68f-ef4c-4bda-8024-8a219055fe25
+    image: ghcr.io/valuable-promo/frontend:dev
+    command: npm run dev
+    # docker compose run --rm frontend npm run build
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    env_file:
+      - ./../frontend/.env.local
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./../frontend:/app
+  db:
+    image: postgres:15.3
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: 'strapi'
+      POSTGRES_DB: 'strapi'
+      POSTGRES_PASSWORD: 'strapi'
+      PGDATA: '/var/lib/postgresql/data/pgdata'
+  adminer:
+    depends_on:
+      - db
+    image: adminer
+    ports:
+      - 8080:8080
+  headless:
+    depends_on:
+      - db
+    build: ./../headless
+    image: ghcr.io/valuable-promo/headless:dev
+    command: npm run develop
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    env_file:
+      - ./../headless/.env
+    ports:
+      - '1337:1337'
+    volumes:
+      - ./../headless:/app
