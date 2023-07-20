@@ -17,6 +17,10 @@ spec:
     spec:
       containers:
         - name: headless
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            runAsNonRoot: true
           image: ghcr.io/valuable-promo/headless:v1.1.6 # {"$imagepolicy": "valuable-promo-prod:valuable-promo-headless"}
           envFrom:
             - secretRef:
