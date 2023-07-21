@@ -3,6 +3,6 @@ kind: Kustomization
 resources:
   - config-map.yaml
   - sealed-secret.yaml
-  - depl.yaml
+  # - depl.yaml
   - service.yaml
   - ingress.yaml
