@@ -1,0 +1,12 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: revalidator
+  namespace: valuable-promo-staging
+subjects:
+  - kind: ServiceAccount
+    name: revalidator
+roleRef:
+  kind: Role
+  name: revalidator
+  apiGroup: rbac.authorization.k8s.io
