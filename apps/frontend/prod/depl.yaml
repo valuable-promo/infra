@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-depl
+  namespace: valuable-promo-prod
+  annotations:
+    reloader.stakater.com/auto: 'true'
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: frontend-depl
+  template:
+    metadata:
+      labels:
+        app: frontend-depl
+    spec:
+      containers:
+        - name: frontend
+          image: ghcr.io/valuable-promo/frontend:v1.3.0 # {"$imagepolicy": "valuable-promo-prod:valuable-promo-frontend"}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: frontend-env
+            - secretRef:
+                name: frontend-env
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: valuable-promo-frontend
+  namespace: valuable-promo-prod
+spec:
+  image: ghcr.io/valuable-promo/frontend
+  interval: 1m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: valuable-promo-frontend
+  namespace: valuable-promo-prod
+spec:
+  imageRepositoryRef:
+    name: valuable-promo-frontend
+  policy:
+    semver:
+      range: '>=0.1.0'
