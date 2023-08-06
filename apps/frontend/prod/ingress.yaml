@@ -21,3 +21,28 @@ spec:
                 name: frontend-srv
                 port:
                   number: 3000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: frontend-ads-ingress
+  namespace: valuable-promo-prod
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /ads.txt
+    nginx.ingress.kubernetes.io/ssl-redirect: 'false'
+spec:
+  tls:
+    - hosts:
+        - valuable.promo
+      secretName: frontend-tls
+  rules:
+    - host: valuable.promo
+      http:
+        paths:
+          - path: /ads.txt
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend-srv
+                port:
+                  number: 3000
