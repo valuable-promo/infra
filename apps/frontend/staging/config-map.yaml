@@ -9,3 +9,4 @@ data:
   SITE_URL: https://staging.valuable.promo
   SITE_NAME: Valuable Promo
   NEXT_PUBLIC_PAGE_SIZE: '9'
+  HOSTNAME: '0.0.0.0'
