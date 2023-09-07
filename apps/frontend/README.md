@@ -1,12 +1,15 @@
-# Revalidator
+# Frontend
 
-## Secrets
+## Generate a random token for revalidation
+
+```bash
+export REVALIDATE_TOKEN="$(openssl rand -base64 32)"
+```
 
 ```bash
 export NAMESPACE="toBeProvided"
-export REVALIDATE_TOKEN="toBeProvided"
 kubectl create secret generic --dry-run=client \
-    revalidator-env \
+    frontend-env \
     --namespace=$NAMESPACE \
     --from-literal=REVALIDATE_TOKEN=$REVALIDATE_TOKEN \
     -o yaml \
