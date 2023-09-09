@@ -21,7 +21,7 @@ spec:
             runAsUser: 1000
             runAsGroup: 1000
             runAsNonRoot: true
-          image: ghcr.io/valuable-promo/headless:main-b48590b-1693511178 # {"$imagepolicy": "valuable-promo-staging:valuable-promo-headless"}
+          image: ghcr.io/valuable-promo/headless:main-ecb7b40-1694279686 # {"$imagepolicy": "valuable-promo-staging:valuable-promo-headless"}
           imagePullPolicy: Always
           envFrom:
             - secretRef:
