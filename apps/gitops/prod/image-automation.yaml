@@ -7,7 +7,7 @@ spec:
   interval: 1m0s
   sourceRef:
     kind: GitRepository
-    name: valuable-promo
+    name: valuable-promo-infra
     namespace: flux-system
   git:
     checkout:
