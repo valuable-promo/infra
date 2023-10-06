@@ -17,17 +17,10 @@ spec:
                 - name: data
                   mountPath: /backup
               args:
-                - pg_dump
-                - '-v'
-                - '-h'
-                - '$(DB_HOST)'
-                - '-U'
-                - '$(DB_USER)'
-                - '$(DB_NAME)'
-                - '|'
-                - gzip
-                - '>'
-                - '/backup/$(DB_NAME).sql.gz'
+                - sh
+                - -c
+                - >
+                  pg_dump -h $(DB_HOST) -U $(DB_USER) $(DB_NAME) | gzip > /backup/$(DB_NAME).sql.gz
               envFrom:
                 - configMapRef:
                     name: dbbackup-env
