@@ -22,7 +22,7 @@ spec:
             runAsUser: 1000
             runAsGroup: 1000
             runAsNonRoot: true
-          image: ghcr.io/valuable-promo/revalidator:main-2d453b4-1699511277 # {"$imagepolicy": "valuable-promo-staging:valuable-promo-revalidator"}
+          image: ghcr.io/valuable-promo/revalidator:main-159070e-1699511347 # {"$imagepolicy": "valuable-promo-staging:valuable-promo-revalidator"}
           imagePullPolicy: Always
           env:
             - name: K8S_NAMESPACE
