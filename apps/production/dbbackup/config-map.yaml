@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dbbackup-env
+  namespace: valuable-promo-prod
+data:
+  DB_HOST: 'headless-pooler.valuable-promo-prod'
+  DB_PORT: '5432'
+  DB_NAME: 'app'
+  DB_USER: 'app'
+  AWS_ACCESS_KEY_ID: 'SCWEBQF89FCQ8H6JHHDB'
+  AWS_DEFAULT_REGION: 'nl-ams'
+  AWS_ENDPOINT_URL_S3: 'https://s3.nl-ams.scw.cloud'
+  BUCKET_NAME: 'valuable-promo-db-backups'
