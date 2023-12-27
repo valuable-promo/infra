@@ -1,0 +1,50 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: frontend-ingress
+  namespace: valuable-promo-staging
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer
+    nginx.ingress.kubernetes.io/whitelist-source-range: '144.21.59.206/32,2603:c020:c001:bb48:a79b:1d9d:22f9:c85a/128'
+spec:
+  tls:
+    - hosts:
+        - staging.valuable.promo
+      secretName: frontend-tls
+  rules:
+    - host: staging.valuable.promo
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend-srv
+                port:
+                  number: 3000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: frontend-ads-ingress
+  namespace: valuable-promo-staging
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /ads.txt
+    nginx.ingress.kubernetes.io/ssl-redirect: 'false'
+    nginx.ingress.kubernetes.io/whitelist-source-range: '144.21.59.206/32,2603:c020:c001:bb48:a79b:1d9d:22f9:c85a/128'
+spec:
+  tls:
+    - hosts:
+        - staging.valuable.promo
+      secretName: frontend-tls
+  rules:
+    - host: staging.valuable.promo
+      http:
+        paths:
+          - path: /ads.txt
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend-srv
+                port:
+                  number: 3000
