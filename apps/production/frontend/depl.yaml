@@ -26,24 +26,3 @@ spec:
                 name: frontend-env
             - secretRef:
                 name: frontend-env
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImageRepository
-metadata:
-  name: valuable-promo-frontend
-  namespace: valuable-promo-prod
-spec:
-  image: ghcr.io/valuable-promo/frontend
-  interval: 1m0s
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImagePolicy
-metadata:
-  name: valuable-promo-frontend
-  namespace: valuable-promo-prod
-spec:
-  imageRepositoryRef:
-    name: valuable-promo-frontend
-  policy:
-    semver:
-      range: '>=0.1.0'
