@@ -54,7 +54,7 @@ kubectl create secret generic --dry-run=client \
     --from-literal=SCALEWAY_ACCESS_SECRET=$SCALEWAY_ACCESS_SECRET \
     --from-literal=SMTP_PASSWORD=$SMTP_PASSWORD \
     -o yaml \
-    | kubeseal --format=yaml > $ENV/env.sealed-secret.yaml
+    | kubeseal --format=yaml > sealed-secret.yaml
 ```
 
 ```bash

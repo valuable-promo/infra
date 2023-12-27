@@ -1,0 +1,12 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: valuable-promo-headless
+  namespace: valuable-promo-prod
+spec:
+  imageRepositoryRef:
+    name: valuable-promo-headless
+  policy:
+    semver:
+      range: '>=0.1.0'
