@@ -10,3 +10,15 @@ spec:
   policy:
     semver:
       range: '>=0.1.0'
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: valuable-promo-revalidator
+  namespace: valuable-promo-prod
+spec:
+  imageRepositoryRef:
+    name: valuable-promo-revalidator
+  policy:
+    semver:
+      range: '>=0.1.0'

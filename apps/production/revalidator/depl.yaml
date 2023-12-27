@@ -34,24 +34,3 @@ spec:
                 name: revalidator-env
             - configMapRef:
                 name: revalidator-env
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImageRepository
-metadata:
-  name: valuable-promo-revalidator
-  namespace: valuable-promo-prod
-spec:
-  image: ghcr.io/valuable-promo/revalidator
-  interval: 1m0s
----
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImagePolicy
-metadata:
-  name: valuable-promo-revalidator
-  namespace: valuable-promo-prod
-spec:
-  imageRepositoryRef:
-    name: valuable-promo-revalidator
-  policy:
-    semver:
-      range: '>=0.1.0'
