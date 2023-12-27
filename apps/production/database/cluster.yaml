@@ -13,8 +13,8 @@ spec:
       - host all all all md5
   bootstrap:
     initdb:
-      database: valuable_promo_prod
-      owner: valuable_promo_prod_sql
+      database: app
+      owner: app
       secret:
         name: db-secret
   storage:
