@@ -5,11 +5,12 @@ metadata:
   labels:
     run: hello
   name: hello
+  namespace: valuable-promo-prod
 spec:
   containers:
-  - image: nginx
-    name: hello
-    resources: {}
+    - image: nginx
+      name: hello
+      resources: {}
   dnsPolicy: ClusterFirst
   restartPolicy: Always
 status: {}
