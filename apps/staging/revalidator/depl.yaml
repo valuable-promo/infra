@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: revalidator-depl
+  namespace: valuable-promo-staging
+  annotations:
+    reloader.stakater.com/auto: 'true'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: revalidator-depl
+  template:
+    metadata:
+      labels:
+        app: revalidator-depl
+    spec:
+      serviceAccountName: revalidator
+      containers:
+        - name: revalidator
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            runAsNonRoot: true
+          image: ghcr.io/valuable-promo/revalidator:main-92142be-1702212132 # {"$imagepolicy": "valuable-promo-staging:valuable-promo-revalidator"}
+          imagePullPolicy: Always
+          env:
+            - name: K8S_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          envFrom:
+            - secretRef:
+                name: revalidator-env
+            - configMapRef:
+                name: revalidator-env

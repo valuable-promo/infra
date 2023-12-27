@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: revalidator-env
+  namespace: valuable-promo-staging
+data:
+  NEXTJS_PORT: '3000'

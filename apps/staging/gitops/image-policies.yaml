@@ -13,3 +13,18 @@ spec:
   policy:
     numerical:
       order: asc
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: valuable-promo-revalidator
+  namespace: valuable-promo-staging
+spec:
+  imageRepositoryRef:
+    name: valuable-promo-revalidator
+  filterTags:
+    pattern: '^main-[a-fA-F0-9]+-(?P<ts>.*)'
+    extract: '$ts'
+  policy:
+    numerical:
+      order: asc
