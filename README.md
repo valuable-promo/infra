@@ -6,3 +6,5 @@ We have `staging` and `prod` namespaces. Cloud enginner provided the following r
 - SMTP credentials
 - Object storage credentials
 - All the secrets (sealed)
+
+Happy coding!
