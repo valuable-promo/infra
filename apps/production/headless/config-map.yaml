@@ -10,9 +10,9 @@ data:
   URL: https://headless.valuable.promo
   STORAGE_HOST: 'valuable-promo-headless-prod.s3.nl-ams.scw.cloud'
 
-  DATABASE_HOST: 'postgresql-pooler.postgresql.svc'
-  DATABASE_NAME: 'valuable_promo_prod'
-  DATABASE_USERNAME: 'valuable_promo_prod_sql'
+  DATABASE_HOST: 'headless-pooler.valuable-promo-prod'
+  DATABASE_NAME: 'app'
+  DATABASE_USERNAME: 'app'
   DATABASE_SSL: 'false'
   DATABASE_DEBUG: 'false'
 
