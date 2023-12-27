@@ -2,9 +2,9 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: dbbackup-cronjob
-  namespace: valuable-promo-prod
+  namespace: valuable-promo-staging
 spec:
-  schedule: '1 1 * * *'
+  schedule: '0 0 * * *'
   jobTemplate:
     spec:
       template:
@@ -36,7 +36,7 @@ spec:
               args:
                 - '-c'
                 - >
-                  aws s3 cp /backup/$(DB_NAME).sql.gz s3://$(BUCKET_NAME)/$(DB_NAME)_$(date -u +%Y%m%d%H%M%S).prod.sql.gz
+                  aws s3 cp /backup/$(DB_NAME).sql.gz s3://$(BUCKET_NAME)/$(DB_NAME)_$(date -u +%Y%m%d%H%M%S).staging.sql.gz
               envFrom:
                 - secretRef:
                     # Must contain AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_DEFAULT_REGION
