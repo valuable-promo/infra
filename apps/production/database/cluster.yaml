@@ -11,6 +11,11 @@ spec:
       max_worker_processes: '60'
     pg_hba:
       - host all all all md5
+  bootstrap:
+    initdb:
+      database: valuable_promo_prod
+      owner: valuable_promo_prod_sql
+      secret:
+        name: db-secret
   storage:
     size: 5Gi
-  primaryUpdateMethod: switchover
