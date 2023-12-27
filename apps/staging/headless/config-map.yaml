@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: headless-env
+  namespace: valuable-promo-staging
+data:
+  NODE_ENV: 'production'
+  HOST: '0.0.0.0'
+  PORT: '1337'
+  URL: https://headless-staging.valuable.promo
+  STORAGE_HOST: 'valuable-promo-headless-staging.s3.nl-ams.scw.cloud'
+
+  DATABASE_HOST: 'headless-pooler.valuable-promo-staging.svc'
+  DATABASE_NAME: 'app'
+  DATABASE_USERNAME: 'app'
+  DATABASE_SSL: 'false'
+  DATABASE_DEBUG: 'false'
+
+  SCALEWAY_ACCESS_KEY_ID: 'SCWQ55BD5H8V85C8MZ5J'
+  SCALEWAY_BUCKET: 'valuable-promo-headless-staging'
+  SCALEWAY_ENDPOINT: 's3.nl-ams.scw.cloud'
+
+  SMTP_HOST: 'smtp.eu.mailgun.org'
+  SMTP_PORT: '587'
+  SMTP_USERNAME: 'postmaster-staging@intl.valuable.promo'
+  SMTP_FROM: 'staging@valuable.promo'

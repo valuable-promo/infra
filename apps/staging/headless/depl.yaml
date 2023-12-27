@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: headless-depl
+  namespace: valuable-promo-staging
+  annotations:
+    reloader.stakater.com/auto: 'true'
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: headless-depl
+  template:
+    metadata:
+      labels:
+        app: headless-depl
+    spec:
+      containers:
+        - name: headless
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            runAsNonRoot: true
+          image: ghcr.io/valuable-promo/headless:main-92ca2bf-1701836865 # {"$imagepolicy": "valuable-promo-staging:valuable-promo-headless"}
+          imagePullPolicy: Always
+          env:
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: password
+          envFrom:
+            - secretRef:
+                name: headless-env
+            - configMapRef:
+                name: headless-env

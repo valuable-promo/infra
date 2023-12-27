@@ -1,0 +1,9 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: valuable-promo-headless
+  namespace: valuable-promo-staging
+spec:
+  image: ghcr.io/valuable-promo/headless
+  interval: 1m0s
