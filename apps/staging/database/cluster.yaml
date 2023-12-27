@@ -1,0 +1,21 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: headless-db
+  namespace: valuable-promo-staging
+spec:
+  imageName: ghcr.io/cloudnative-pg/postgresql:16.1
+  instances: 1
+  postgresql:
+    parameters:
+      max_worker_processes: '60'
+    pg_hba:
+      - host all all all md5
+  bootstrap:
+    initdb:
+      database: app
+      owner: app
+      secret:
+        name: db-secret
+  storage:
+    size: 5Gi
