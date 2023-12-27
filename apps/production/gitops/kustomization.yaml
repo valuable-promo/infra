@@ -6,3 +6,5 @@ resources:
   - image-update-automation.yaml
   - alert.yaml
   - provider.yaml
+  - image-policies.yaml
+  - image-repositories.yaml
