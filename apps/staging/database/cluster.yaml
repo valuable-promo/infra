@@ -5,7 +5,7 @@ metadata:
   namespace: valuable-promo-staging
 spec:
   imageName: ghcr.io/cloudnative-pg/postgresql:16.1
-  instances: 1
+  instances: 2
   postgresql:
     parameters:
       max_worker_processes: '60'
