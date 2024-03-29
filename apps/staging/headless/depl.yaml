@@ -21,7 +21,7 @@ spec:
             runAsUser: 1000
             runAsGroup: 1000
             runAsNonRoot: true
-          image: ghcr.io/valuable-promo/headless:main-34ec250-1711723603 # {"$imagepolicy": "valuable-promo-staging:valuable-promo-headless"}
+          image: ghcr.io/valuable-promo/headless:main-d46d31a-1711725361 # {"$imagepolicy": "valuable-promo-staging:valuable-promo-headless"}
           imagePullPolicy: Always
           env:
             - name: DATABASE_PASSWORD
